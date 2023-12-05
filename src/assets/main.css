@@ -1,0 +1,359 @@
+@import './base.css';
+
+body{
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Menu Container */
+.menu-con{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.menu-fea{
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+}
+
+.menu-list{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 600px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.menu-list p:hover{
+  color: royalblue;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Category Container */
+
+.cat-con{
+  position: relative;
+  width: 136px;
+  height: 177px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #F2FCE4;
+
+  /* Shadow-1 */
+  box-shadow: 20px 20px 40px 0px rgba(24, 24, 24, 0.07);
+  transition: 0.2s;
+}
+
+.cat-con:hover{
+  cursor: pointer;
+  border: 1px solid var(--NestMart-Brand-1-Light, #81B13D);
+  translate: 0 10px;
+}
+
+
+.cat-con .cat-imgCon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-bottom: 5px;
+}
+
+.cat-con p{
+  color: var(--NestMart-TextHeading, #253D4E);
+  text-align: center;
+
+  /* NestMart/Heading 6 */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px; /* 125% */
+  letter-spacing: -0.006px;
+}
+
+.cat-con p:last-child{
+  color: var(--NestMart-Text-Muted, #B6B6B6);
+  text-align: center;
+
+  /* NestMart/ Text xs */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 150% */
+}
+
+.cat-dis{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Promotion */
+
+.pro-con{
+  width: calc(512px);
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #F3E8E8;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 0 45px;
+  gap: 25px;
+
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
+.pro-con p{
+  word-wrap: break-word;
+  width: 250px;
+  height: 92px;
+  color: var(--NestMart-TextHeading, #253D4E);
+
+  /* NestMart/Heading 4 */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.01px;
+}
+
+.pro-dis{
+  display: flex;
+  gap: 10px;
+}
+
+/* Button */
+.pro-btn{
+  display: inline-flex;
+  padding: 8px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  border-radius: 3px;
+  background: var(--NestMart-Brand-1, #3BB77E);
+  border: none;
+}
+
+/* Product */
+
+.prod-con{
+  width: 298px;
+  height: 402px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #BCE3C9;
+
+  background: #FFF;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.prod-con .prod-imgCon{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 50%;
+}
+.prod-con .prod-imgCon img{
+  width: 201.893px;
+  height: 144.933px;
+  flex-shrink: 0;
+}
+
+.prod-text .p1{
+  color: var(--NestMart-TextBody, #7E7E7E);
+
+  /* NestMart/ Text xs */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  margin-top: 10px;
+}
+
+.prod-text .p2{
+  color: var(--NestMart-TextHeading, #253D4E);
+  width: 260px;
+  word-wrap: break-word;
+  /* NestMart / Heading sm */
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.006px;
+  margin-top: 5px;
+}
+
+.prod-text .p3{
+  color: var(--NestMart-TextBody, #7E7E7E);
+
+  /* NestMart/ Text xs */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.prod-text .prod-price{
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.prod-price .wrapper{
+  display: flex;
+  align-items: end;
+  gap: 5px;
+}
+
+.prod-text .prod-price .p4{
+  color: var(--NestMart-Brand-1, #3BB77E);
+
+  /* NestMart/Heading 5 */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 160% */
+  letter-spacing: -0.008px;
+}
+
+.prod-text .prod-price .p5{
+  color: var(--NestMart-TextBody, #7E7E7E);
+
+  text-decoration: line-through;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px; /* 166.667% */
+  letter-spacing: -0.005px;
+  margin-top: 12px;
+}
+
+.prod-text .prod-star{
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.prod-star .p6{
+  color: var(--NestMart-TextBody, #7E7E7E);
+
+  /* NestMart/ Text xs */
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+
+  margin-left: 8px;
+}
+
+.prod-con .prod-disp{
+  position: absolute;
+  left: 0;
+  top: 20%;
+  translate: 0px -40px;
+
+  display: none;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 0px 30px 30px 0px;
+  background: var(--NestMart-Brand-1, #3BB77E);
+}
+
+.prod-con .active{
+  display: inline-flex;
+}
+
+.prod-con .prod-disp{
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px; /* 100% */
+}
+
+.prod-dis{
+  display: flex;
+  width: calc(5*310px);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+
+
+/* Count Container */
+
+.count-con{
+  width: 67px;
+  height: 29px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #DEF9EC;
+  cursor: pointer;
+  outline: none;
+  border: none;
+
+  color: var(--NestMart-Brand-1, #3BB77E);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.006px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.count-con .count-arrow {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: end;
+  height: 100%;
+  justify-content: space-between;
+
+  margin-left: 10px;
+}
+
+.count-arrow button{
+ background-color: white;
+ font-size: 9px;
+ outline: none;
+ border: none;
+ color: #3BB77E;
+ cursor: pointer;
+ transition: 0.1s;
+}
+
+.count-arrow button:hover{
+  background-color: #3BB77E;
+  color: white;
+}
