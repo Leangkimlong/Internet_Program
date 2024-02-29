@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class CategoryController extends Controller
 {
