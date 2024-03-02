@@ -34,3 +34,5 @@ Route::get('/products', [ProductController::class,'createProduct']);
 Route::get('/products/{product}', [ProductController::class,'getProduct']);
 Route::get('/products/{product}/edit', [ProductController::class,'updateProduct']);
 Route::get('/products/{product}/delete', [ProductController::class,'deleteProduct']);
+
+Route::get('/verify_otp',[AuthController::class, "verifyOTP"]);

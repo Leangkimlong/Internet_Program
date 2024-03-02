@@ -47,3 +47,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return "Get all products belong to categoryId";
 // });
 
+Route::post('/register',[AuthController::class, "register"]);
+Route::post('/login',[AuthController::class, "login"]);
+
+Route::get('/send-test-email', function () {
+    $user = [
+        'name' => 'John Doe',
+        'email' => 'john.doe@example.com',
+    ];
+    Mail::to($user['email'])->send(new TestMail($user));
+
+    return "Test email sent!";
+});
