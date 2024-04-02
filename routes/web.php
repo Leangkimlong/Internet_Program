@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[HomeController::class,'renderHome']);
+Route::get('/products/add',[HomeController::class,'add']);
+Route::get('/products/edit',[HomeController::class,'edit']);
+Route::post('/products/store',[HomeController::class,'store']);
+Route::get('/allproducts',[HomeController::class,'products']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,0 +1,1 @@
+<button class="pro-btn" style="background-color:{{$bgColors[1][$loop->index]}}">Shop Now <i class="fa-solid fa-arrow-right"></i></button>
