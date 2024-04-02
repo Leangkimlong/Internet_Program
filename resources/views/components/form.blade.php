@@ -24,6 +24,8 @@
             <input @if ($product)
                 @if (preg_match('/-\d{1,2}%/',$product->promotion))
                     value="{{(int) preg_split('/[-%]/', $product->promotion)[1]}}"
+                @elseif(preg_match('/-%/',$product->promotion))
+                    value="";
                 @else
                     value="{{$product->promotion}}"            
                 @endif
