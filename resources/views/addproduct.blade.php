@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="margin: auto; position: absolute; top: calc(50% - 318px); left: calc(50% - 315px)">
+    <div style="margin: auto; position: absolute; top: calc(25%); left: calc(50% - 315px)">
         @include('components.form')
     </div>
 </body>

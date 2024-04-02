@@ -50,11 +50,12 @@
                 @case("Sale")    
                     style="background-color: #FDC040"
                     @break
+                @case("-%")
+                    style="display:none"
                 @default
                     style="background-color: #3BB77E"
                     @break
-            @endswitch
-        >
+            @endswitch>
             <p>{{ $p->promotion }}</p>
         </div>
     @endif
