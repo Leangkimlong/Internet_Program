@@ -22,11 +22,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <a
                             href="#"
                             class="list-group-item list-group-item-action border-0"
+                            v-for="u in users" :key="u.id"
                         >
-                            <div class="badge bg-success float-right">5</div>
+                            <div v-if="messageN[u.id]!=0" class="badge bg-success float-right">{{ messageN[u.id] }}</div>
                             <div class="d-flex align-items-start">
                                 <img
                                     src="https://bootdey.com/img/Content/avatar/avatar5.png"
@@ -36,14 +38,14 @@
                                     height="40"
                                 />
                                 <div class="flex-grow-1 ml-3">
-                                    Vanessa Tucker
+                                    {{ u.name }}
                                     <div class="small">
                                         <span class="fas fa-circle chat-online"></span> Online
                                     </div>
                                 </div>
                             </div>
                         </a>
-                        <a
+                        <!-- <a
                             href="#"
                             class="list-group-item list-group-item-action border-0"
                         >
@@ -183,7 +185,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                         <hr class="d-block d-lg-none mt-1 mb-0" />
                     </div>
                     <div class="col-12 col-lg-7 col-xl-9">
@@ -503,14 +505,23 @@
                             </div>
                         </div>
                         <div class="flex-grow-0 py-3 px-4 border-top">
-                            <div class="input-group">
+                            <form method="post" v-on:submit.prevent="Message" class="input-group">
+                                <input
+                                    type="text"
+                                    v-model="text"
+                                    class="form-control"
+                                    placeholder="Type your message"
+                                />
+                                <button class="btn btn-primary">Send</button>
+                            </form>
+                            <!-- <div class="input-group">
                                 <input
                                     type="text"
                                     class="form-control"
                                     placeholder="Type your message"
                                 />
                                 <button class="btn btn-primary">Send</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -519,30 +530,74 @@
     </main>
 </template>
 <script>
-export default {
-    name: "ChatModule",
-    methods: {
-        // getMessages: async() => {
-        //     try {
-        //         const m = await axios.get(`${rootUrl}/messages`);
-        //         setMessages(m.data);
-        //         setTimeout(scrollToBottom, 0);
-        //     } catch (err) {
-        //         console.log(err.message);
-        //     }
-        // },
-        connectWebSocket: () => {
-            console.log('connecting')
-            window.Echo.private("channel_for_everyone")
-                .listen('GotMessage', async (e) => {
-                    console.log(e)
-                    alert(e)
-                    // await getMessages();
+    import axios from "axios";
+    export default {
+        data(){
+            return{
+                text: '',
+                users: [],
+                messageN: {},
+                authUser: {},
+            }
+        },
+        name: "ChatModule",
+        methods: {
+            // getMessages: async() => {
+            //     try {
+            //         const m = await axios.get(`${rootUrl}/messages`);
+            //         setMessages(m.data);
+            //         setTimeout(scrollToBottom, 0);
+            //     } catch (err) {
+            //         console.log(err.message);
+            //     }
+            // },
+            connectWebSocket() {
+                console.log('connecting')
+                window.Echo.private("channel_for_everyone")
+                    .listen('GotMessage', async (e) => {
+                        // console.log(e.message.user_id)
+                        var user = this.users.find(user => user.id === e.message.user_id);
+                        alert(e)
+                        // await getMessages();
+                        if(user){
+                            if (this.messageN.hasOwnProperty(user.id)) {
+                                // Increment the message count for the user
+                                this.messageN[user.id] = (this.messageN[user.id] || 0) + 1;
+
+                            } else {
+                                // If the user ID doesn't exist, initialize the message count to 1
+                                this.messageN[user.id] = 1;
+                            }
+                        }
+                    });
+            },
+            async GetAllUser(){
+                const res = await axios.get('/api/users');
+                // console.log((await res).data);
+                this.users = res.data;
+                // console.log(this.users);
+            },
+            Message(){
+                axios.post('/api/message').catch(response => {
+                    console.log(response);
                 });
+                this.text = "";
+            },
+            async GetAuthUser(){
+                axios.get('/api/AuthUser').then(response => {
+                    // console.log(response)
+                    this.authUser = response.data;
+                    console.log(this.authUser);
+                })
+                .catch(response => {
+                    console.log(response)
+                })
+            }
+        },
+        async mounted() {
+            await this.GetAuthUser();
+            this.GetAllUser();
+            this.connectWebSocket();
         }
-    },
-    mounted() {
-        this.connectWebSocket();
     }
-}
 </script>
