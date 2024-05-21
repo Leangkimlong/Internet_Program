@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- {{ __("You're logged in!") }} --}}
-                    <chat />
+                    <chat :user-id="{{ json_encode(auth()->user()->id) }}" />
                 </div>
             </div>
         </div>

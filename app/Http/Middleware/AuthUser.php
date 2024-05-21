@@ -17,9 +17,8 @@ class AuthUser
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check()){
-            $request->attributes->set('user', Auth::user());
+            return $next($request);
         }
-
-        return $next($request);
+        return response("User not logged in");
     }
 }

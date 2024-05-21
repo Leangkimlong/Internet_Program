@@ -21,7 +21,8 @@ class SendMessage implements ShouldQueue
     public function handle(): void {
         GotMessage::dispatch([
             'id' => $this->message->id,
-            'user_id' => $this->message->user_id,
+            'sender_id' => $this->message->sender_id,
+            'receiver_id' => $this->message->receiver_id,
             'text' => $this->message->text,
             'time' => $this->message->time,
         ]);

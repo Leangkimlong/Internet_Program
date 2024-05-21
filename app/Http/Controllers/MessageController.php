@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -33,7 +34,7 @@ class MessageController extends Controller
     public function message(Request $request): JsonResponse {
         $message = Message::create([
             'sender_id' => $request->get('sender_id'),
-            'recontent' => $request->get('receiver_id'),
+            'receiver_id' => $request->get('receiver_id'),
             'text' => $request->get('text'),
         ]);
         SendMessage::dispatch($message);

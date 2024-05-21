@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(AuthUser::class);
+        // $middleware->append(AuthUser::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
