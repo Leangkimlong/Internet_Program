@@ -206,7 +206,6 @@
                         if(user){
                             if (this.messageN.hasOwnProperty(user.id)) {
                                 this.messageN[user.id] = (this.messageN[user.id] || 0) + 1;
-
                             } else {
                                 this.messageN[user.id] = 1;
                             }
@@ -225,7 +224,7 @@
                     receiver_id: this.chatUser.id,
                     text: this.text,
                 }).then(()=>{
-                    this.getAllMessages();
+                    this.getLastMessage();
                 }).catch(response => {
                     console.log(response);
                 });
@@ -235,22 +234,29 @@
                 for (var u of this.users) {
                     if(u.id == this.userId){
                         this.currentUser = u;
-                        console.log(this.currentUser);
+                        // console.log(this.currentUser);
                         break;
                     }
                 };
             },
             selectUser(id){
                 this.chatUser = this.users.find(user => user.id == id);
-                console.log(this.chatUser);
+                // console.log(this.chatUser);
             },
             getAllMessages(){
-                this.messages = null;
                 axios.get('/api/messages').then((res)=>{
                     this.messages = res.data;
+                    console.log(this.messages);
                 }).catch((res)=>{
                     console.log(res);
                 })
+            },
+            getLastMessage(){
+                axios.get('/api/messageL').then((res)=>{
+                    this.messages = this.messages.concat(res.data.message);
+                }).catch((res)=>{
+                    console.log(res);
+                });
             },
             clearMessageN(userId){
                 if(this.messageN.hasOwnProperty(userId)){

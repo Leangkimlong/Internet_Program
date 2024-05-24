@@ -44,4 +44,8 @@ class MessageController extends Controller
             'message' => "Message created and job dispatched.",
         ]);
     }
+
+    public function messageL(): JsonResponse{
+        return response()->json(['message'=>Message::all()->append('time')->reverse()->first()]);
+    }
 }

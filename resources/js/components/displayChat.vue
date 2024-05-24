@@ -12,7 +12,7 @@
                             height="40"
                         />
                         <div class="text-muted small text-nowrap mt-2">
-                            {{ message.time }}
+                            {{ message.time.split(",")[0] }}
                         </div>
                     </div>
                     <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
@@ -30,7 +30,7 @@
                             height="40"
                         />
                         <div class="text-muted small text-nowrap mt-2">
-                            {{message.time}}
+                            {{message.time.split(",")[0]}}
                         </div>
                     </div>
                     <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
@@ -58,6 +58,6 @@
                 type: Object,
                 required: true
             }
-        }
+        },
     }
 </script>

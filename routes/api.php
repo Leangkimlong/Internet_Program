@@ -15,6 +15,7 @@ Route::get('/messages', [MessageController::class, 'messages'])
     ->name('messages');
 Route::post('/message', [MessageController::class, 'message'])
     ->name('message');
+Route::get('/messageL', [MessageController::class, 'messageL']);
 
 Route::get('/users', function () {
     $users = User::all();
