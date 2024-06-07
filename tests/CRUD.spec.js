@@ -23,20 +23,44 @@ test('Create new task', async ({page}) => {
 })
 
 //CRUD002
-// test("Update Task", async ({page}) => {
-//     await login(page, 'http://127.0.0.1:8000/', email, pass);
+test("Update Task", async ({page}) => {
+    await login(page, 'http://127.0.0.1:8000/', email, pass);
 
-//     await expect(page.getByText("You are logged in!")).toBeVisible();
+    await expect(page.getByText("You are logged in!")).toBeVisible();
 
-//     await page.getByRole("button", {name: "Task"}).click();
-//     await page.getByRole("link", {name: "Tasks Overview"}).click();
+    await page.getByRole("button", {name: "Task"}).click();
+    await page.getByRole("link", {name: "Tasks Overview"}).click();
     
-//     // const row = await page.locator('tr', {hasText: task});
+    const row = await page.locator('tr', {hasText: task});
 
-//     await page.getByRole('gridcell', {name: "Edit Task"}).click();
+    await row.locator(".fa-pencil").first().click();
 
-//     await page.getByRole("textbox", {name: "Task Name"}).fill(task + "_Updated");
-//     await page.getByRole("textbox", {name: "Task Description"}).fill(des + "_Updated");
+    // await page.locator('.fa-pencil').nth(1).dblclick();
 
-//     await page.getByRole("button", {name: "Save Changes"}).click();
-// })
+    await page.getByRole("textbox", {name: "Task Name"}).fill(task + "_Updated");
+    await page.getByRole("textbox", {name: "Task Description"}).fill(des + "_Updated");
+
+    await page.getByRole("button", {name: "Save Changes"}).click();
+
+    await expect(page.getByText("Task Updated", {exact: true})).toBeVisible();
+})
+
+//CRUD003
+test("Delete Task", async ({page}) => {
+    await login(page, 'http://127.0.0.1:8000/', email, pass);
+
+    await expect(page.getByText("You are logged in!")).toBeVisible();
+
+    await page.getByRole("button", {name: "Task"}).click();
+    await page.getByRole("link", {name: "Tasks Overview"}).click();
+    
+    const row = await page.locator('tr', {hasText: task+"_Updated"});
+
+    await row.locator(".fa-pencil").first().click();
+
+    // await page.locator('.fa-pencil').nth(1).dblclick();
+
+    await page.getByRole("button", {name: "Delete"}).click();
+
+    await expect(page.getByText("Task Deleted", {exact: true})).toBeVisible();
+})

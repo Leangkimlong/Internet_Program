@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-export const name = "Nick";
+export const name = "Jake";
 export const email = name + "@gmail.com";
 export const pass = "12345678";
 
