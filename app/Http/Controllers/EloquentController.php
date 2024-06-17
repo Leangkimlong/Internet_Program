@@ -164,6 +164,23 @@ class EloquentController extends Controller
         return $audience->unique('name')->values();
     }
 
+    public function getCommentByA($audience){
+        $a = Audience::with('comment')->where('name', '=', $audience)->get();
+
+        $comments = [];
+
+        foreach ($a as $b) {
+            if (!empty($b->comment)) {
+                foreach ($b->comment as $comment) {
+                    // $comments .= $comment; // You can customize the separator
+                    $comments[] = $b;
+                }
+            }
+        }
+
+        return $comments;
+    }
+
     public function getComment($topic){
         switch($topic){
             case 'author':

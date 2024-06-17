@@ -19,5 +19,6 @@ Route::post('/comment', [EloquentController::class, 'comment']);
 Route::get('/articles/{name}', [EloquentController::class, 'getArticles']);
 Route::get('/audience/{article}', [EloquentController::class, 'getAudience']);
 Route::get('/author/{author}', [EloquentController::class, 'getAudienceByAuthor']);
-Route::get('/comment/{topic}', [EloquentController::class, 'getComment']);
+Route::get('/comment/{audience}', [EloquentController::class, 'getCommentByA']);
+Route::get('/comments/{topic}', [EloquentController::class, 'getComment']);
 
