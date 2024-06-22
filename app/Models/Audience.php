@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -26,5 +27,9 @@ class Audience extends Model
 
     public function comment(): MorphMany{
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function comments(): HasMany{
+        return $this->hasMany(Comment::class,'user_id','user_id');
     }
 }

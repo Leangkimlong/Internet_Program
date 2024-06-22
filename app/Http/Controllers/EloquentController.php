@@ -162,6 +162,7 @@ class EloquentController extends Controller
         }
 
         return $audience->unique('name')->values();
+        // return $author;
     }
 
     public function getCommentByA($audience){
@@ -173,7 +174,7 @@ class EloquentController extends Controller
             if (!empty($b->comment)) {
                 foreach ($b->comment as $comment) {
                     // $comments .= $comment; // You can customize the separator
-                    $comments[] = $b;
+                    $comments[] = $b->comment;
                 }
             }
         }
@@ -181,17 +182,47 @@ class EloquentController extends Controller
         return $comments;
     }
 
-    public function getComment($topic){
+    public function getComment($topic, $info = null){
         switch($topic){
             case 'author':
-                $author = Author::with('comment')->get();
-                return $author;
+                $author = Author::with('comments')->where('name','=',$info)->get();
+
+                foreach ($author as $a) {
+                    if (!empty($a->comments)) {
+                        // foreach ($a->comment as $comment) {
+                            // $comments .= $comment; // You can customize the separator
+                            return $a->comments;
+                        // }
+                    }
+                }
+
+                // return $author;
             case 'audience':
-                $audience = Audience::with('comment')->get();
-                return $audience;
+                $audience = Audience::with('comments')->where('name','=',$info)->get();
+
+                foreach ($audience as $a) {
+                    if (!empty($a->comments)) {
+                        // foreach ($a->comment as $comment) {
+                            // $comments .= $comment; // You can customize the separator
+                            $comments = collect($a->comments);
+                        // }
+                    }
+                }
+
+                return $comments->unique('name');
             case 'article':
-                $article = Article::with('comment')->get();
-                return $article;
+                $article = Article::with('comment')->where('name','=',$info)->get();
+
+                foreach ($article as $a) {
+                    if (!empty($a->comment)) {
+                        // foreach ($a->comment as $comment) {
+                            // $comments .= $comment; // You can customize the separator
+                            $comments[] = $a->comment;
+                        // }
+                    }
+                }
+
+                return $comments;
         }
     }
 }

@@ -35,4 +35,8 @@ class Author extends Model
     public function audiences(): HasManyThrough{
         return $this->hasManyThrough(Audience::class, Article::class);
     }
+
+    public function comments(): HasMany{
+        return $this->hasMany(Comment::class,'user_id','user_id');
+    }
 }
