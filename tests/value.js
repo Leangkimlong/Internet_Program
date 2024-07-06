@@ -4,8 +4,8 @@ export const name = "Jake";
 export const email = name + "@gmail.com";
 export const pass = "12345678";
 
-export const emailMailtrap = "techchivlim5@gmail.com";
-export const passMailtrap = "techchiv144556";
+export const emailMailtrap = "mizterlong95@gmail.com";
+export const passMailtrap = "kimlong1871130";
 
 export async function login(page, url, email, pass){
     await page.goto(url);
